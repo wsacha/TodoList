@@ -11,12 +11,22 @@ export class App extends Component {
       { id: 2, description: "Do laundry" }
     ]
   }
+  onAdd = (task) => {
+
+  };
+  onDelete = (id) => {
+    let newState = this.state.tasks.filter((elem) => {
+      return (elem.id !== id);
+    });
+    console.log(newState)
+    this.setState({ tasks: newState, });
+  };
   render() {
     return (
       <div className="container center-align">
         <h1>Todo List</h1>
-        <AddTask />
-        <DisplayTasks ourTasks={this.state.tasks} />
+        <AddTask addTask={this.onAdd} />
+        <DisplayTasks ourTasks={this.state.tasks} deleteTask={this.onDelete} />
       </div>
     )
   }
